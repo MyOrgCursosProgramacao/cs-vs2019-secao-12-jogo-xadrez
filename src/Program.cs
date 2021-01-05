@@ -9,8 +9,8 @@ namespace src
         static void Main(string[] args)
         {
 
-            PosicaoXadrez px = new PosicaoXadrez('a', 1);
-            Console.WriteLine(px);
+            PosicaoXadrez px = new PosicaoXadrez('h', 8);
+            Console.WriteLine(px.ToPosicao());
             
 
         }

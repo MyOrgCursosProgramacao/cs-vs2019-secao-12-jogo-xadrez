@@ -14,13 +14,13 @@ namespace src
                 Console.Write("\t");
                 for (int j = 0; j < Tabuleiro.Colunas; j++)
                 {
-                    if (Tabuleiro.getPeca(i, j) == null)
+                    if (Tabuleiro.GetPeca(i, j) == null)
                     {
                         Console.Write("-");
                     }
                     else
                     {
-                        Console.Write(Tabuleiro.getPeca(i, j));
+                        Console.Write(Tabuleiro.GetPeca(i, j));
                     }
                     if (j < Tabuleiro.Colunas)
                     {

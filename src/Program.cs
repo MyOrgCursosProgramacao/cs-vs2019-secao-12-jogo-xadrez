@@ -8,12 +8,22 @@ namespace src
     {
         static void Main(string[] args)
         {
-            Tabuleiro tabuleiro = new Tabuleiro(8, 8);
+            PartidaDeXadrez partida = new PartidaDeXadrez();
             try
             {
-                tabuleiro.ColocarPeca(new Torre(Cor.preto, tabuleiro), new Posicao(0, 0));
-                tabuleiro.ColocarPeca(new Torre(Cor.preto, tabuleiro), new Posicao(1, 3));
-                tabuleiro.ColocarPeca(new Rei(Cor.branco, tabuleiro), new Posicao(2, 4));
+                while (!partida.terminada)
+                {
+                    Console.Clear();
+                    Console.WriteLine(partida.Turno + " turno");
+                    Tela.ImprimirTabuleiro(partida.Tabuleiro);
+
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+
+                    partida.ExecutaMovimento(origem, destino);
+                }
             }
             catch (TabuleiroException e)
             {
@@ -21,8 +31,8 @@ namespace src
             }
             finally
             {
+                Tela.ImprimirTabuleiro(partida.Tabuleiro);
                 Console.WriteLine();
-                Tela.ImprimirTabuleiro(tabuleiro);
             }
 
 

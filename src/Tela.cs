@@ -20,7 +20,7 @@ namespace src
                     }
                     else
                     {
-                        Console.Write(Tabuleiro.GetPeca(i, j));
+                        Tela.ImprimirPeca(Tabuleiro.GetPeca(i, j));
                     }
                 }
                 Console.WriteLine();
@@ -33,8 +33,21 @@ namespace src
                 Console.Write((Char)(Convert.ToUInt16('a') + j) + " ");
             }
             Console.WriteLine();
+        }
 
-
+        public static void ImprimirPeca(Peca peca)
+        {
+            if (peca.Cor == Cor.branco)
+            {
+                Console.Write(peca);
+            }
+            else if (peca.Cor == Cor.preto)
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(peca);
+                Console.ForegroundColor = aux;
+            }
         }
     }
 }

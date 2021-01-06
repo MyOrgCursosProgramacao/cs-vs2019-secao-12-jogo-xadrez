@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using tabuleiro;
 
 namespace src
@@ -12,8 +10,10 @@ namespace src
             for (int i = 0; i < Tabuleiro.Linhas; i++)
             {
                 Console.Write("\t");
+                Console.Write(Tabuleiro.Linhas - i);
                 for (int j = 0; j < Tabuleiro.Colunas; j++)
                 {
+                    Console.Write(" ");
                     if (Tabuleiro.GetPeca(i, j) == null)
                     {
                         Console.Write("-");
@@ -22,13 +22,18 @@ namespace src
                     {
                         Console.Write(Tabuleiro.GetPeca(i, j));
                     }
-                    if (j < Tabuleiro.Colunas)
-                    {
-                        Console.Write(" ");
-                    }
                 }
                 Console.WriteLine();
             }
+            Console.Write("\t");
+            Console.Write("  ");
+            for (int j = 0; j < Tabuleiro.Colunas; j++)
+            {
+
+                Console.Write((Char)(Convert.ToUInt16('a') + j) + " ");
+            }
+            Console.WriteLine();
+
 
         }
     }

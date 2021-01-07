@@ -15,6 +15,12 @@
             QtdMovimentos = 0;
         }
 
+        protected bool PodeMover(Posicao posicao)
+        {
+            Peca peca = Tabuleiro.GetPeca(posicao);
+            return peca == null || peca.Cor != Cor;
+        }
+
         public abstract bool[,] MovimentosPossiveis();
 
         public void IncrementarQtdMovimento()

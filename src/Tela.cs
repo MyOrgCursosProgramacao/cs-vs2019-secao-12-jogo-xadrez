@@ -6,8 +6,11 @@ namespace src
 {
     class Tela
     {
-        public static void ImprimirTabuleiro(Tabuleiro Tabuleiro)
+        public static void ImprimirTabuleiro(Tabuleiro Tabuleiro, bool[,] posicoesPossiveis)
         {
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
             for (int i = 0; i < Tabuleiro.Linhas; i++)
             {
                 Console.Write("\t");
@@ -15,14 +18,12 @@ namespace src
                 for (int j = 0; j < Tabuleiro.Colunas; j++)
                 {
                     Console.Write(" ");
-                    if (Tabuleiro.GetPeca(i, j) == null)
+                    if (posicoesPossiveis[i, j])
                     {
-                        Console.Write("-");
+                        Console.BackgroundColor = fundoAlterado;
                     }
-                    else
-                    {
-                        Tela.ImprimirPeca(Tabuleiro.GetPeca(i, j));
-                    }
+                    Tela.ImprimirPeca(Tabuleiro.GetPeca(i, j));
+                   Console.BackgroundColor = fundoOriginal;
                 }
                 Console.WriteLine();
             }
@@ -46,7 +47,11 @@ namespace src
 
         public static void ImprimirPeca(Peca peca)
         {
-            if (peca.Cor == Cor.branco)
+            if (peca == null)
+            {
+                Console.Write("-");
+            }
+            else if (peca.Cor == Cor.branco)
             {
                 Console.Write(peca);
             }

@@ -33,6 +33,10 @@ namespace xadrez
         {
             Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('a', 1).ToPosicao());
             Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('h', 1).ToPosicao());
+            Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('d', 1).ToPosicao());
+            Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('e', 2).ToPosicao());
+            Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('f', 1).ToPosicao());
+            Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('f', 2).ToPosicao());
             Tabuleiro.ColocarPeca(new Rei(Cor.branco, Tabuleiro), new PosicaoXadrez('e', 1).ToPosicao());
 
             Tabuleiro.ColocarPeca(new Torre(Cor.preto, Tabuleiro), new PosicaoXadrez('a', 8).ToPosicao());

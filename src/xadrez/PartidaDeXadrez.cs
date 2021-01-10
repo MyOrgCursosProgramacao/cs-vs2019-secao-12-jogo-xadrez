@@ -36,6 +36,30 @@ namespace xadrez
             MudaJogador();
         }
 
+        public void ValidarPosicaoOrigem(Posicao origem)
+        {
+            if (Tabuleiro.GetPeca(origem) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição escolhida");
+            }
+            if (JogadorAtual != Tabuleiro.GetPeca(origem).Cor)
+            {
+                throw new TabuleiroException("A peça escolhida não é sua");
+            }
+            if (!Tabuleiro.GetPeca(origem).ExisteMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não há movimentos possíveis para essa peça");
+            }
+        }
+
+        public void ValidarPosicaoDestino(Posicao origem, Posicao destino)
+        {
+            if (!Tabuleiro.GetPeca(origem).PodeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida");
+            }
+        }
+
         private void MudaJogador()
         {
             if (JogadorAtual == Cor.branco)
@@ -44,7 +68,7 @@ namespace xadrez
             }
             else
             {
-                JogadorAtual = Cor.preto;
+                JogadorAtual = Cor.branco;
             }
         }
 
@@ -56,6 +80,7 @@ namespace xadrez
             Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('e', 2).ToPosicao());
             Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('f', 1).ToPosicao());
             Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('f', 2).ToPosicao());
+            Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('d', 2).ToPosicao());
             Tabuleiro.ColocarPeca(new Rei(Cor.branco, Tabuleiro), new PosicaoXadrez('e', 1).ToPosicao());
 
             Tabuleiro.ColocarPeca(new Torre(Cor.preto, Tabuleiro), new PosicaoXadrez('a', 8).ToPosicao());

@@ -13,7 +13,6 @@ namespace src
 
             for (int i = 0; i < Tabuleiro.Linhas; i++)
             {
-                Console.Write("\t");
                 Console.Write(Tabuleiro.Linhas - i);
                 for (int j = 0; j < Tabuleiro.Colunas; j++)
                 {
@@ -27,7 +26,6 @@ namespace src
                 }
                 Console.WriteLine();
             }
-            Console.Write("\t");
             Console.Write("  ");
             for (int j = 0; j < Tabuleiro.Colunas; j++)
             {

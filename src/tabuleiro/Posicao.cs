@@ -1,4 +1,6 @@
-﻿namespace tabuleiro
+﻿using xadrez;
+
+namespace tabuleiro
 {
     class Posicao
     {
@@ -20,6 +22,12 @@
             Linha = linha;
             Coluna = coluna;
         } 
+
+        public PosicaoXadrez ToPosicaoXadrez()
+        {
+            return new PosicaoXadrez((char)(Coluna + 'a'), 8 - Linha);
+  
+        }
 
         public override string ToString()
         {

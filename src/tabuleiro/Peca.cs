@@ -15,10 +15,31 @@
             QtdMovimentos = 0;
         }
 
-        protected bool PodeMover(Posicao posicao)
+        public bool PodeMover(Posicao posicao)
         {
             Peca peca = Tabuleiro.GetPeca(posicao);
             return peca == null || peca.Cor != Cor;
+        }
+
+        public bool PodeMoverPara(Posicao destino)
+        {
+            return MovimentosPossiveis()[destino.Linha, destino.Coluna];
+        }
+
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for (int i = 0; i < Tabuleiro.Linhas; i++)
+            {
+                for (int j = 0; j < Tabuleiro.Colunas; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public abstract bool[,] MovimentosPossiveis();

@@ -15,18 +15,22 @@ namespace src
                 while (!partida.terminada)
                 {
                     Console.Clear();
-                    Console.WriteLine(partida.Turno + " turno");
-
+                    
 
                     Tela.ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
-
+                    Console.WriteLine();
+                    Console.WriteLine("Turno: " + partida.Turno + Environment.NewLine);
+                    Console.WriteLine("Jogador " + partida.JogadorAtual);
                     Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
 
                     Console.Clear();
                     posicoesPossiveis = partida.Tabuleiro.GetPeca(origem).MovimentosPossiveis();
-                    Console.WriteLine(partida.Turno + " turno");
                     Tela.ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
+                    Console.WriteLine("Turno: " + partida.Turno + Environment.NewLine);
+                    Console.WriteLine();
+                    Console.WriteLine("Jogador " + partida.JogadorAtual);
+                    Console.WriteLine("Origem: " + origem.ToPosicaoXadrez());
 
                     Console.Write("Destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
@@ -39,7 +43,7 @@ namespace src
                         }
                     }
 
-                        partida.ExecutaMovimento(origem, destino);
+                        partida.RealizaJogada(origem, destino);
                 }
             }
             catch (TabuleiroException e)

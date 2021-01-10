@@ -29,6 +29,25 @@ namespace xadrez
             Tabuleiro.ColocarPeca(peca, destino);
         }
 
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutaMovimento(origem, destino);
+            Turno++;
+            MudaJogador();
+        }
+
+        private void MudaJogador()
+        {
+            if (JogadorAtual == Cor.branco)
+            {
+                JogadorAtual = Cor.preto;
+            }
+            else
+            {
+                JogadorAtual = Cor.preto;
+            }
+        }
+
         private void ColocarPecas()
         {
             Tabuleiro.ColocarPeca(new Torre(Cor.branco, Tabuleiro), new PosicaoXadrez('a', 1).ToPosicao());

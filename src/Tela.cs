@@ -15,6 +15,10 @@ namespace src
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.Turno);
             Console.WriteLine("Jogador " + partida.JogadorAtual);
+            if (partida.Xeque)
+            {
+                Console.WriteLine($"O rei está em xeque");
+            }
         }
 
         public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)

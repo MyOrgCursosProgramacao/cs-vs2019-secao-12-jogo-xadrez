@@ -11,7 +11,7 @@ namespace src
             PartidaDeXadrez partida = new PartidaDeXadrez();
             bool[,] posicoesPossiveis = new bool[partida.Tabuleiro.Linhas, partida.Tabuleiro.Colunas];
 
-            while (!partida.terminada)
+            while (!partida.Terminada)
             {
                 try
                 {

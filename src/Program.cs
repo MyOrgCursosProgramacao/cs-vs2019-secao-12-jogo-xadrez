@@ -17,20 +17,14 @@ namespace src
                 {
                     Console.Clear();
 
-                    Tela.ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
-                    Console.WriteLine();
-                    Console.WriteLine("Turno: " + partida.Turno + Environment.NewLine);
-                    Console.WriteLine("Jogador " + partida.JogadorAtual);
+                    Tela.ImprimirPartida(partida, posicoesPossiveis);
                     Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
                     partida.ValidarPosicaoOrigem(origem);
 
                     Console.Clear();
                     posicoesPossiveis = partida.Tabuleiro.GetPeca(origem).MovimentosPossiveis();
-                    Tela.ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
-                    Console.WriteLine("Turno: " + partida.Turno + Environment.NewLine);
-                    Console.WriteLine();
-                    Console.WriteLine("Jogador " + partida.JogadorAtual);
+                    Tela.ImprimirPartida(partida, posicoesPossiveis);
                     Console.WriteLine("Origem: " + origem.ToPosicaoXadrez());
 
                     Console.Write("Destino: ");

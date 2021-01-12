@@ -24,12 +24,15 @@ namespace xadrez
                 if (Tabuleiro.PosicaoValida(posicaoAux) && PodeMover(posicaoAux))
                 {
                     mat[posicaoAux.Linha, posicaoAux.Coluna] = true;
+                    if (Tabuleiro.GetPeca(posicaoAux) != null && Tabuleiro.GetPeca(posicaoAux).Cor != Cor)
+                    {
+                        loop = false;
+                    }
                 }
                 else
                 {
                     loop = false;
                 }
-
             }
 
             //Abaixo
@@ -41,12 +44,15 @@ namespace xadrez
                 if (Tabuleiro.PosicaoValida(posicaoAux) && PodeMover(posicaoAux))
                 {
                     mat[posicaoAux.Linha, posicaoAux.Coluna] = true;
+                    if (Tabuleiro.GetPeca(posicaoAux) != null && Tabuleiro.GetPeca(posicaoAux).Cor != Cor)
+                    {
+                        loop = false;
+                    }
                 }
                 else
                 {
                     loop = false;
                 }
-
             }
 
             //Esquerda
@@ -58,12 +64,15 @@ namespace xadrez
                 if (Tabuleiro.PosicaoValida(posicaoAux) && PodeMover(posicaoAux))
                 {
                     mat[posicaoAux.Linha, posicaoAux.Coluna] = true;
+                    if (Tabuleiro.GetPeca(posicaoAux) != null && Tabuleiro.GetPeca(posicaoAux).Cor != Cor)
+                    {
+                        loop = false;
+                    }
                 }
                 else
                 {
                     loop = false;
                 }
-
             }
 
             //Direita
@@ -75,12 +84,19 @@ namespace xadrez
                 if (Tabuleiro.PosicaoValida(posicaoAux) && PodeMover(posicaoAux))
                 {
                     mat[posicaoAux.Linha, posicaoAux.Coluna] = true;
+                    if (Tabuleiro.GetPeca(posicaoAux)!= null && Tabuleiro.GetPeca(posicaoAux).Cor != Cor)
+                    {
+                        loop = false;
+                        if (Tabuleiro.GetPeca(posicaoAux) != null && Tabuleiro.GetPeca(posicaoAux).Cor != Cor)
+                        {
+                            loop = false;
+                        }
+                    }
                 }
                 else
                 {
                     loop = false;
                 }
-
             }
 
             return mat;

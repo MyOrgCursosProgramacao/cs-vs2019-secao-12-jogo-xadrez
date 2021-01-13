@@ -228,17 +228,62 @@ namespace xadrez
 
         private void ColocarPecas()
         {
+            //Peões brancos
+            ColocarNovaPeca('a', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('b', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('c', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('d', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('e', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('f', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('g', 2, new Peao(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('h', 2, new Peao(Cor.branco, Tabuleiro));
+
+            //Torres brancas
             ColocarNovaPeca('a', 1, new Torre(Cor.branco, Tabuleiro));
             ColocarNovaPeca('h', 1, new Torre(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('d', 1, new Torre(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('e', 2, new Torre(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('f', 1, new Torre(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('f', 2, new Torre(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('d', 2, new Torre(Cor.branco, Tabuleiro));
+
+            //Cavalos branco
+            ColocarNovaPeca('b', 1, new Cavalo(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('g', 1, new Cavalo(Cor.branco, Tabuleiro));
+
+            //Bispos branco
+            ColocarNovaPeca('c', 1, new Bispo(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('f', 1, new Bispo(Cor.branco, Tabuleiro));
+
+            //Dama branca
+            ColocarNovaPeca('d', 1, new Dama(Cor.branco, Tabuleiro));
+
+            //Rei branco
             ColocarNovaPeca('e', 1, new Rei(Cor.branco, Tabuleiro));
 
+
+            //Peões pretos
+            ColocarNovaPeca('a', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('b', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('c', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('d', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('e', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('f', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('g', 7, new Peao(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('h', 7, new Peao(Cor.preto, Tabuleiro));
+
+            //Torres pretas
             ColocarNovaPeca('a', 8, new Torre(Cor.preto, Tabuleiro));
             ColocarNovaPeca('h', 8, new Torre(Cor.preto, Tabuleiro));
+
+            //Cavalos branco
+            ColocarNovaPeca('b', 8, new Cavalo(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('g', 8, new Cavalo(Cor.preto, Tabuleiro));
+
+            //Bispos pretos
+            ColocarNovaPeca('c', 8, new Bispo(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('f', 8, new Bispo(Cor.preto, Tabuleiro));
+
+            //Dama preta
+            ColocarNovaPeca('d', 8, new Dama(Cor.preto, Tabuleiro));
+
+
+            //Rei preto
             ColocarNovaPeca('e', 8, new Rei(Cor.preto, Tabuleiro));
         }
     }

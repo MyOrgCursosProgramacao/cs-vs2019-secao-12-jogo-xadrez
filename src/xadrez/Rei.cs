@@ -4,9 +4,11 @@ namespace xadrez
 {
     class Rei : Peca
     {
-        public Rei(Cor cor, Tabuleiro tabuleiro) : base(cor, tabuleiro)
-        {
+        public bool Xeque { get; private set; }
 
+        public Rei(Cor cor, Tabuleiro tabuleiro, bool xeque) : base(cor, tabuleiro)
+        {
+            Xeque = xeque;
         }
 
         public override bool[,] MovimentosPossiveis()
@@ -32,6 +34,33 @@ namespace xadrez
                     }
                 }
             }
+
+            //#Jogada especial
+            if (QtdMovimentos == 0 && !Xeque)
+            {
+                // Roque pequeno
+                Posicao PosicaoTorrePequena = new Posicao(Posicao.Linha, Posicao.Coluna - 4);
+                if (Tabuleiro.GetPeca(PosicaoTorrePequena).QtdMovimentos == 0)
+                {
+                    if (Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna + 1)) == null && Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna + 2)) == null)
+                    {
+                        mat[Posicao.Linha, Posicao.Coluna + 2] = true;
+                    }
+                }
+
+                // Roque grande
+                Posicao PosicaoTorreGrande = new Posicao(Posicao.Linha, Posicao.Coluna + 3);
+                if (Tabuleiro.GetPeca(PosicaoTorreGrande).QtdMovimentos == 0)
+                {
+                    if (Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna - 1)) == null
+                        && Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna - 2)) == null
+                        && Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna - 3)) == null)
+                    {
+                        mat[Posicao.Linha, Posicao.Coluna - 3] = true;
+                    }
+                }
+            }
+
             return mat;
         }
 

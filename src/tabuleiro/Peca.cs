@@ -15,13 +15,13 @@
             QtdMovimentos = 0;
         }
 
-        public bool PodeMover(Posicao posicao)
+        protected bool PodeMover(Posicao posicao)
         {
             Peca peca = Tabuleiro.GetPeca(posicao);
             return peca == null || peca.Cor != Cor;
         }
 
-        public bool PodeMoverPara(Posicao destino)
+        public bool MovimentoPossivel(Posicao destino)
         {
             return MovimentosPossiveis()[destino.Linha, destino.Coluna];
         }

@@ -94,12 +94,12 @@ namespace xadrez
 
         private Peca Rei(Cor cor)
         {
-            foreach(Peca obj in PecasEmJogo(cor))
+            foreach (Peca obj in PecasEmJogo(cor))
             {
                 if (obj is Rei)
                 {
                     return obj;
-                }   
+                }
             }
             return null;
         }
@@ -109,9 +109,9 @@ namespace xadrez
             Peca rei = Rei(cor);
             if (rei == null)
             {
-                throw new TabuleiroException("Não há um rei da cor " + cor + " no batuleiro");
+                throw new TabuleiroException("Não há um rei da cor " + cor + " no tabuleiro");
             }
-            foreach(Peca obj in PecasEmJogo(Adversaria(cor)))
+            foreach (Peca obj in PecasEmJogo(Adversaria(cor)))
             {
                 bool[,] mat = obj.MovimentosPossiveis();
                 if (mat[rei.Posicao.Linha, rei.Posicao.Coluna])
@@ -120,6 +120,37 @@ namespace xadrez
                 }
             }
             return false;
+        }
+
+        public bool XequeMate(Cor cor)
+        {
+            if (!EstaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca obj in PecasEmJogo(cor))
+            {
+                bool[,] mat = obj.MovimentosPossiveis();
+                for (int i = 0; i < Tabuleiro.Linhas; i++)
+                {
+                    for (int j = 0; j < Tabuleiro.Colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = obj.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(obj.Posicao, destino);
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public void RealizaJogada(Posicao origem, Posicao destino)
@@ -141,8 +172,16 @@ namespace xadrez
                 Xeque = false;
             }
 
-            Turno++;
-            MudaJogador();
+            if (XequeMate(Adversaria(JogadorAtual)))
+            {
+                Terminada = true;
+                Console.WriteLine("Xequemate! O vencedor é o jogador " + JogadorAtual + ".");
+            }
+            else
+            {
+                Turno++;
+                MudaJogador();
+            }
         }
 
         public void ValidarPosicaoOrigem(Posicao origem)

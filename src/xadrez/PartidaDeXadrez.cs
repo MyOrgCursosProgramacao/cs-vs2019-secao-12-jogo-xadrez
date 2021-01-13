@@ -38,6 +38,18 @@ namespace xadrez
                 Capturadas.Add(pecaCapturada);
             }
 
+            // #Jogada especial
+            // roque pequeno
+            if (peca is Rei && destino.Coluna == origem.Coluna + 2)
+            {
+                ExecutaMovimento(new Posicao(origem.Linha, origem.Coluna + 3), new Posicao(origem.Linha, origem.Coluna + 1));
+            }
+            // roque grande
+            if (peca is Rei && destino.Coluna == origem.Coluna - 2)
+            {
+                ExecutaMovimento(new Posicao(origem.Linha, origem.Coluna - 4), new Posicao(origem.Linha, origem.Coluna - 1));
+            }
+
             return pecaCapturada;
         }
 
@@ -243,18 +255,18 @@ namespace xadrez
             ColocarNovaPeca('h', 1, new Torre(Cor.branco, Tabuleiro));
 
             //Cavalos branco
-            ColocarNovaPeca('b', 1, new Cavalo(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('g', 1, new Cavalo(Cor.branco, Tabuleiro));
+            //ColocarNovaPeca('b', 1, new Cavalo(Cor.branco, Tabuleiro));
+            // ColocarNovaPeca('g', 1, new Cavalo(Cor.branco, Tabuleiro));
 
             //Bispos branco
-            ColocarNovaPeca('c', 1, new Bispo(Cor.branco, Tabuleiro));
-            ColocarNovaPeca('f', 1, new Bispo(Cor.branco, Tabuleiro));
+            //ColocarNovaPeca('c', 1, new Bispo(Cor.branco, Tabuleiro));
+            // ColocarNovaPeca('f', 1, new Bispo(Cor.branco, Tabuleiro));
 
             //Dama branca
-            ColocarNovaPeca('d', 1, new Dama(Cor.branco, Tabuleiro));
+            //ColocarNovaPeca('d', 1, new Dama(Cor.branco, Tabuleiro));
 
             //Rei branco
-            ColocarNovaPeca('e', 1, new Rei(Cor.branco, Tabuleiro));
+            ColocarNovaPeca('e', 1, new Rei(Cor.branco, Tabuleiro, Xeque));
 
 
             //Peões pretos
@@ -272,19 +284,19 @@ namespace xadrez
             ColocarNovaPeca('h', 8, new Torre(Cor.preto, Tabuleiro));
 
             //Cavalos branco
-            ColocarNovaPeca('b', 8, new Cavalo(Cor.preto, Tabuleiro));
+            // ColocarNovaPeca('b', 8, new Cavalo(Cor.preto, Tabuleiro));
             ColocarNovaPeca('g', 8, new Cavalo(Cor.preto, Tabuleiro));
 
             //Bispos pretos
-            ColocarNovaPeca('c', 8, new Bispo(Cor.preto, Tabuleiro));
+            //ColocarNovaPeca('c', 8, new Bispo(Cor.preto, Tabuleiro));
             ColocarNovaPeca('f', 8, new Bispo(Cor.preto, Tabuleiro));
 
             //Dama preta
-            ColocarNovaPeca('d', 8, new Dama(Cor.preto, Tabuleiro));
+            //ColocarNovaPeca('d', 8, new Dama(Cor.preto, Tabuleiro));
 
 
             //Rei preto
-            ColocarNovaPeca('e', 8, new Rei(Cor.preto, Tabuleiro));
+            ColocarNovaPeca('e', 8, new Rei(Cor.preto, Tabuleiro, Xeque));
         }
     }
 }

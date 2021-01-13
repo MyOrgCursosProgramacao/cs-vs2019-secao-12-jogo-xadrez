@@ -56,7 +56,7 @@ namespace xadrez
                         && Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna - 2)) == null
                         && Tabuleiro.GetPeca(new Posicao(Posicao.Linha, Posicao.Coluna - 3)) == null)
                     {
-                        mat[Posicao.Linha, Posicao.Coluna - 3] = true;
+                        mat[Posicao.Linha, Posicao.Coluna - 2] = true;
                     }
                 }
             }

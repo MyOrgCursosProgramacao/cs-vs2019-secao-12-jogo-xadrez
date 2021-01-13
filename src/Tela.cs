@@ -15,9 +15,17 @@ namespace src
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.Turno);
             Console.WriteLine("Jogador " + partida.JogadorAtual);
-            if (partida.Xeque)
+           if (!partida.Terminada)
             {
-                Console.WriteLine($"O rei está em xeque");
+                if (partida.Xeque)
+                {
+                    Console.WriteLine($"O rei está em xeque");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Xequemate!");
+                Console.WriteLine("Vencedor: " + partida.JogadorAtual);
             }
         }
 

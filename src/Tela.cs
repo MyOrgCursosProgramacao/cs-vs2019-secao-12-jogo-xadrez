@@ -15,7 +15,7 @@ namespace src
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.Turno);
             Console.WriteLine("Jogador " + partida.JogadorAtual);
-           if (!partida.Terminada)
+            if (!partida.Terminada)
             {
                 if (partida.Xeque)
                 {

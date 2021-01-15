@@ -57,7 +57,7 @@ namespace xadrez
             // En passant
             if (peca is Peao && VulneravelEnPassant != null && destino.Coluna == PosicaoVulneravelEnPassant.Coluna)
             {
-                if (peca.Cor == Cor.branco && destino.Linha == (PosicaoVulneravelEnPassant.Linha -1))
+                if (peca.Cor == Cor.branco && destino.Linha == (PosicaoVulneravelEnPassant.Linha - 1))
                 {
                     pecaCapturada = Tabuleiro.RetiraPeca(VulneravelEnPassant.Posicao);
                     Capturadas.Add(VulneravelEnPassant);
@@ -187,6 +187,103 @@ namespace xadrez
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
             Peca pecaCapturada = ExecutaMovimento(origem, destino);
+            Peca peca = Tabuleiro.GetPeca(destino);
+
+            // #Jogada especia
+            // Promoção
+            if (peca is Peao)
+            {
+                if (peca.Cor == Cor.branco && destino.Linha == 0)
+                {
+                    peca = Tabuleiro.RetiraPeca(destino);
+                    Pecas.Remove(peca);
+                    int QtdMovimentos = peca.QtdMovimentos;
+                    Peca pecaPromocao = new Dama(Cor.branco, Tabuleiro);
+
+                    Console.WriteLine();
+                    bool loop = true;
+                    while (loop)
+                    {
+                        Console.Write("Escolha uma peça para promoção (T, C, B, D): ");
+                        char escolha = char.Parse(Console.ReadLine());
+
+                        switch (escolha)
+                        {
+                            case 'T':
+                                pecaPromocao = new Torre(Cor.branco, Tabuleiro);
+                                loop = false;
+                                break;
+                            case 'C':
+                                pecaPromocao = new Cavalo(Cor.branco, Tabuleiro);
+                                loop = false;
+                                break;
+                            case 'B':
+                                pecaPromocao = new Bispo(Cor.branco, Tabuleiro);
+                                loop = false;
+                                break;
+                            case 'D':
+                                loop = false;
+                                break;
+                            default:
+                                Console.WriteLine("Opção inválida");
+                                break;
+                        }
+                    }
+
+                    for (int i = 0; i < QtdMovimentos; i++)
+                    {
+                        pecaPromocao.IncrementarQtdMovimento();
+                    }
+
+                    Tabuleiro.ColocarPeca(pecaPromocao, destino);
+                }
+
+                if (peca.Cor == Cor.preto && destino.Linha == 8)
+                {
+                    peca = Tabuleiro.RetiraPeca(destino);
+                    Pecas.Remove(peca);
+                    int QtdMovimentos = peca.QtdMovimentos;
+                    Peca pecaPromocao = new Dama(Cor.preto, Tabuleiro);
+
+                    Console.WriteLine();
+                    bool loop = true;
+                    while (loop)
+                    {
+                        Console.Write("Escolha uma peça para promoção (T, C, B, D): ");
+                        char escolha = char.Parse(Console.ReadLine());
+
+                        switch (escolha)
+                        {
+                            case 'T':
+                                pecaPromocao = new Torre(Cor.preto, Tabuleiro);
+                                loop = false;
+                                break;
+                            case 'C':
+                                pecaPromocao = new Cavalo(Cor.preto, Tabuleiro);
+                                loop = false;
+                                break;
+                            case 'B':
+                                pecaPromocao = new Bispo(Cor.preto, Tabuleiro);
+                                loop = false;
+                                break;
+                            case 'D':
+                                loop = false;
+                                break;
+                            default:
+                                Console.WriteLine("Opção inválida");
+                                break;
+                        }
+                    }
+
+                    for (int i = 0; i < QtdMovimentos; i++)
+                    {
+                        pecaPromocao.IncrementarQtdMovimento();
+                    }
+
+                    Tabuleiro.ColocarPeca(pecaPromocao, destino);
+                }
+            }
+
 
             if (EstaEmXeque(JogadorAtual))
             {
@@ -216,7 +313,7 @@ namespace xadrez
 
             // #Jogada especial
             // En passant
-            Peca peca = Tabuleiro.GetPeca(destino);
+            Tabuleiro.GetPeca(destino);
             if (peca is Peao && peca.QtdMovimentos == 1 && Math.Abs(origem.Linha - destino.Linha) == 2)
             {
                 VulneravelEnPassant = peca;
@@ -226,8 +323,6 @@ namespace xadrez
             {
                 VulneravelEnPassant = null;
             }
-
-
         }
 
         public void ValidarPosicaoOrigem(Posicao origem)
